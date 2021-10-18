@@ -13,7 +13,7 @@ export default class StoreValidator {
     ]),
     password: schema.string({ trim: true }, [rules.confirmed('passwordConfirmation')]),
     cpf: schema.string({ trim: true }, [rules.minLength(11), rules.maxLength(11)]),
-    birthday: schema.string({ trim: true }), // TODO: validate date
+    birthday: schema.date(),
 
     state: schema.string({ trim: true }),
     city: schema.string({ trim: true }),

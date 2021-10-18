@@ -12,13 +12,7 @@ export default class UsersSchema extends BaseSchema {
       table.string('password', 180).notNullable();
       table.string('cpf').notNullable();
       table.date('birthday').notNullable();
-      table
-        .integer('address_id')
-        .unsigned()
-        .references('id')
-        .inTable('addresses')
-        .onUpdate('CASCADE')
-        .onDelete('CASCADE');
+
       table.string('role').defaultTo('user');
       table.string('avatar').defaultTo('default-profile.jpeg');
 

@@ -12,7 +12,6 @@ export default class UsersSchema extends BaseSchema {
       table.string('password', 180).notNullable();
       table.string('cpf').notNullable();
       table.date('birthday').notNullable();
-
       table.string('role').defaultTo('user');
       table.string('avatar').defaultTo('default-profile.jpeg');
 

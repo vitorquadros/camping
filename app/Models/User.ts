@@ -23,7 +23,7 @@ export default class User extends BaseModel {
   public cpf: string;
 
   @column()
-  public birthday: Date;
+  public birthday: DateTime;
 
   @column()
   public role: string;

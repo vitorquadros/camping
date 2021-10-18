@@ -11,5 +11,7 @@ export default class AuthUserController {
     return token;
   }
 
-  public async destroy({}: HttpContextContract) {}
+  public async destroy({ auth }: HttpContextContract) {
+    await auth.logout();
+  }
 }

@@ -30,7 +30,14 @@ export default class MainsController {
     return user;
   }
 
-  public async show({}: HttpContextContract) {}
+  public async show({ params }: HttpContextContract) {
+    const { username } = params;
+    const user = await User.findByOrFail('username', username);
+
+    await user.load('address');
+
+    return user;
+  }
 
   // public async edit({}: HttpContextContract) {}
 

@@ -1,6 +1,6 @@
 import { DateTime } from 'luxon';
-import { BaseModel, column, belongsTo, BelongsTo } from '@ioc:Adonis/Lucid/Orm';
-import { User } from 'App/Models';
+import { BaseModel, BelongsTo, belongsTo, column, HasOne, hasOne } from '@ioc:Adonis/Lucid/Orm';
+import { User } from '.';
 
 export default class Address extends BaseModel {
   @column({ isPrimary: true })
@@ -8,6 +8,9 @@ export default class Address extends BaseModel {
 
   @column()
   public state: string;
+
+  @column()
+  public adressId: number;
 
   @column()
   public city: string;
@@ -27,6 +30,6 @@ export default class Address extends BaseModel {
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   public updatedAt: DateTime;
 
-  @belongsTo(() => User)
-  public user: BelongsTo<typeof User>;
+  @hasOne(() => User)
+  public user: HasOne<typeof User>;
 }

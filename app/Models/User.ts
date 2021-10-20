@@ -1,6 +1,14 @@
 import { DateTime } from 'luxon';
 import Hash from '@ioc:Adonis/Core/Hash';
-import { column, beforeSave, BaseModel, hasOne, HasOne } from '@ioc:Adonis/Lucid/Orm';
+import {
+  column,
+  beforeSave,
+  BaseModel,
+  hasOne,
+  HasOne,
+  belongsTo,
+  BelongsTo
+} from '@ioc:Adonis/Lucid/Orm';
 import { Address } from 'App/Models';
 
 export default class User extends BaseModel {
@@ -32,6 +40,9 @@ export default class User extends BaseModel {
   public avatar: string;
 
   @column()
+  public addressId: number;
+
+  @column()
   public rememberMeToken?: string;
 
   @column.dateTime({ autoCreate: true })
@@ -47,6 +58,6 @@ export default class User extends BaseModel {
     }
   }
 
-  @hasOne(() => Address)
-  public address_id: HasOne<typeof Address>;
+  @belongsTo(() => Address)
+  public address: BelongsTo<typeof Address>;
 }

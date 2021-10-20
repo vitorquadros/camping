@@ -6,7 +6,7 @@ export default class StoreValidator {
 
   public schema = schema.create({
     fullName: schema.string({ trim: true }),
-    username: schema.string({ trim: true }),
+    username: schema.string({ trim: true }, [rules.unique({ table: 'users', column: 'username' })]),
     email: schema.string({ trim: true }, [
       rules.email(),
       rules.unique({ table: 'users', column: 'email' })

@@ -1,5 +1,5 @@
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext';
-import { User } from 'App/Models';
+import { Address, User } from 'App/Models';
 import { StoreValidator } from 'App/Validators/Users';
 
 export default class MainsController {
@@ -21,8 +21,9 @@ export default class MainsController {
     } = await request.validate(StoreValidator);
 
     const user = await User.create({ fullName, username, email, password, cpf, birthday });
+    const address = await Address.create({ state, city, street, streetNumber, zipCode });
 
-    await user.related('address_id').create({ state, city, street, streetNumber, zipCode });
+    await user.related('address').associate(address);
 
     return user;
   }

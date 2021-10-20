@@ -22,7 +22,9 @@ export default class User extends BaseModel {
   @column()
   public cpf: string;
 
-  @column()
+  @column.dateTime({
+    serialize: (date: DateTime) => date.toFormat('dd/MM/yyyy')
+  })
   public birthday: DateTime;
 
   @column()

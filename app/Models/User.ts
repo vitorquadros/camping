@@ -1,6 +1,15 @@
 import { DateTime } from 'luxon';
 import Hash from '@ioc:Adonis/Core/Hash';
-import { column, beforeSave, BaseModel, belongsTo, BelongsTo } from '@ioc:Adonis/Lucid/Orm';
+import {
+  column,
+  beforeSave,
+  BaseModel,
+  belongsTo,
+  BelongsTo,
+  beforeFind,
+  ModelQueryBuilderContract,
+  beforeFetch
+} from '@ioc:Adonis/Lucid/Orm';
 import { Address } from 'App/Models';
 
 export default class User extends BaseModel {
@@ -57,6 +66,12 @@ export default class User extends BaseModel {
     if (user.$dirty.password) {
       user.password = await Hash.make(user.password);
     }
+  }
+
+  @beforeFetch()
+  @beforeFind()
+  public static fetchAddress(query: ModelQueryBuilderContract<typeof User>) {
+    query.preload('address');
   }
 
   @belongsTo(() => Address)

@@ -31,16 +31,23 @@ export default class User extends BaseModel {
   @column()
   public avatar: string;
 
-  @column()
+  @column({ serializeAs: null })
   public addressId: number;
 
   @column()
   public rememberMeToken?: string;
 
-  @column.dateTime({ autoCreate: true })
+  @column.dateTime({
+    autoCreate: true,
+    serialize: (date: DateTime) => date.toFormat('dd/MM/yyyy HH:mm:ss')
+  })
   public createdAt: DateTime;
 
-  @column.dateTime({ autoCreate: true, autoUpdate: true })
+  @column.dateTime({
+    autoCreate: true,
+    autoUpdate: true,
+    serialize: (date: DateTime) => date.toFormat('dd/MM/yyyy HH:mm:ss')
+  })
   public updatedAt: DateTime;
 
   @beforeSave()

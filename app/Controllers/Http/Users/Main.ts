@@ -25,6 +25,8 @@ export default class MainsController {
 
     await user.related('address').associate(address);
 
+    await user.load('address');
+
     return user;
   }
 

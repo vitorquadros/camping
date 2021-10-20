@@ -3,7 +3,10 @@ import { Address, User } from 'App/Models';
 import { StoreValidator } from 'App/Validators/Users';
 
 export default class MainsController {
-  // public async index({}: HttpContextContract) {}
+  public async index({}: HttpContextContract) {
+    const users = await User.all();
+    return users;
+  }
 
   public async store({ request }: HttpContextContract) {
     const {
@@ -33,8 +36,6 @@ export default class MainsController {
   public async show({ params }: HttpContextContract) {
     const { username } = params;
     const user = await User.findByOrFail('username', username);
-
-    await user.load('address');
 
     return user;
   }

@@ -6,8 +6,8 @@ export default class LocationCoordinates extends BaseSchema {
   public async up() {
     this.schema.createTable(this.tableName, (table) => {
       table.increments('id').primary();
-      table.decimal('latitude', 8, 6);
-      table.decimal('longitude', 9, 6);
+      table.decimal('latitude', 8, 6).notNullable();
+      table.decimal('longitude', 9, 6).notNullable();
 
       table.timestamp('created_at', { useTz: true });
       table.timestamp('updated_at', { useTz: true });

@@ -36,7 +36,4 @@ export default class Address extends BaseModel {
     serializeAs: null
   })
   public updatedAt: DateTime;
-
-  @hasOne(() => User)
-  public user: HasOne<typeof User>;
 }

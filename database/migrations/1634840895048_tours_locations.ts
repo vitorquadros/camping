@@ -18,7 +18,7 @@ export default class ToursLocations extends BaseSchema {
         .integer('coordinates_id')
         .unsigned()
         .references('id')
-        .inTable('locations_coordinates')
+        .inTable('location_coordinates')
         .onUpdate('CASCADE')
         .onDelete('CASCADE');
 

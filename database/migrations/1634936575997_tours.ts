@@ -21,7 +21,6 @@ export default class Tours extends BaseSchema {
       table.decimal('price', 10, 2).notNullable();
       table
         .integer('start_location_id')
-        .notNullable()
         .unsigned()
         .references('id')
         .inTable('tours_locations')

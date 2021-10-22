@@ -3,6 +3,8 @@ import { BaseModel, column, HasOne, hasOne } from '@ioc:Adonis/Lucid/Orm';
 import { LocationCoordinate } from 'App/Models';
 
 export default class TourLocation extends BaseModel {
+  public static table = 'tours_locations';
+
   @column({ isPrimary: true })
   public id: number;
 

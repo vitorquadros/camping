@@ -1,8 +1,10 @@
 import { DateTime } from 'luxon';
-import { BaseModel, column, HasOne, hasOne } from '@ioc:Adonis/Lucid/Orm';
+import { BaseModel, belongsTo, BelongsTo, column } from '@ioc:Adonis/Lucid/Orm';
 import { TourLocation } from 'App/Models';
-
+import { slugify } from '@ioc:Adonis/Addons/LucidSlugify';
 export default class Tour extends BaseModel {
+  public static table = 'tours';
+
   @column({ isPrimary: true })
   public id: number;
 
@@ -19,7 +21,7 @@ export default class Tour extends BaseModel {
   public private: boolean;
 
   @column()
-  public difficulty: 'easy' | 'experient' | 'expert';
+  public difficulty: string;
 
   @column()
   public duration: number;
@@ -42,6 +44,6 @@ export default class Tour extends BaseModel {
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   public updatedAt: DateTime;
 
-  @hasOne(() => TourLocation)
-  public tourLocation: HasOne<typeof TourLocation>;
+  @belongsTo(() => TourLocation, { foreignKey: 'startLocationId' })
+  public tourLocation: BelongsTo<typeof TourLocation>;
 }

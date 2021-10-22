@@ -12,6 +12,7 @@ export default class Tour extends BaseModel {
   public name: string;
 
   @column()
+  @slugify({ strategy: 'dbIncrement', fields: ['name'], allowUpdates: true })
   public slug: string;
 
   @column()

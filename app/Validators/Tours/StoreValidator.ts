@@ -7,7 +7,7 @@ export default class StoreValidator {
   public schema = schema.create({
     name: schema.string({ trim: true }, [rules.unique({ table: 'tours', column: 'name' })]),
     description: schema.string({ trim: true }),
-    private: schema.boolean(),
+    privateTour: schema.boolean(),
     difficulty: schema.enum(['easy', 'experient', 'expert']),
     duration: schema.number(),
     maxGroupSize: schema.number(),

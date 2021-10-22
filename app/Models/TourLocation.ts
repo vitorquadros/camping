@@ -1,6 +1,6 @@
 import { DateTime } from 'luxon';
 import { BaseModel, column, HasOne, hasOne } from '@ioc:Adonis/Lucid/Orm';
-import { Address, LocationCoordinate } from '.';
+import { LocationCoordinate } from 'App/Models';
 
 export default class TourLocation extends BaseModel {
   @column({ isPrimary: true })
@@ -10,7 +10,10 @@ export default class TourLocation extends BaseModel {
   public locationName: string;
 
   @column()
-  public addressId: number;
+  public state: string;
+
+  @column()
+  public city: string;
 
   @column()
   public coordinatesId: number;
@@ -20,9 +23,6 @@ export default class TourLocation extends BaseModel {
 
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   public updatedAt: DateTime;
-
-  @hasOne(() => Address)
-  public address: HasOne<typeof Address>;
 
   @hasOne(() => LocationCoordinate)
   public coordinate: HasOne<typeof LocationCoordinate>;

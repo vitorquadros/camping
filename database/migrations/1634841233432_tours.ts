@@ -35,7 +35,7 @@ export default class Tours extends BaseSchema {
   }
 
   public async down() {
-    this.schema.raw('DROP TYPE IF EXISTS "tour_difficulties"');
     this.schema.dropTable(this.tableName);
+    this.schema.raw('DROP TYPE IF EXISTS "tour_difficulties"');
   }
 }

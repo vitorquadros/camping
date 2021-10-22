@@ -7,13 +7,8 @@ export default class ToursLocations extends BaseSchema {
     this.schema.createTable(this.tableName, (table) => {
       table.increments('id').primary();
       table.string('location_name').notNullable();
-      table
-        .integer('address_id')
-        .unsigned()
-        .references('id')
-        .inTable('addresses')
-        .onUpdate('CASCADE')
-        .onDelete('CASCADE');
+      table.string('state').notNullable();
+      table.string('city').notNullable();
       table
         .integer('coordinates_id')
         .unsigned()
